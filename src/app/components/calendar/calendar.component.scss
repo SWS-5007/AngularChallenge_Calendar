@@ -1,0 +1,37 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  padding: 16px;
+}
+
+.day-header {
+  text-align: center;
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+.day-cell {
+  border: 1px solid #ccc;
+  min-height: 100px;
+  padding: 4px;
+  cursor: pointer;
+  overflow-y: auto;
+}
+
+.day-number {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.reminder-box {
+  margin-top: 4px;
+  padding: 2px 4px;
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+}

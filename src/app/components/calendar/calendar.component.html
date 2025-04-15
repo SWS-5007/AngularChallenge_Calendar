@@ -1,0 +1,43 @@
+<mat-toolbar class="app-navbar">
+  <button mat-icon-button (click)="changeMonth(-1)">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <span>{{ currentMonth + 1 }}/{{ currentYear }}</span>
+  <button mat-icon-button (click)="changeMonth(1)">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <button mat-button (click)="openReminderForm()">
+    <mat-icon>add</mat-icon> New reminder
+  </button>
+</mat-toolbar>
+
+<div class="calendar-grid">
+  <div
+    class="day-header"
+    *ngFor="let d of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']"
+  >
+    {{ d }}
+  </div>
+
+  <div class="day-cell" *ngFor="let date of calendarDays">
+    <ng-container *ngIf="date; else empty">
+      <div class="day-number" (click)="openReminderForm(undefined, date)">
+        {{ date.getDate() }}
+      </div>
+      <div
+        class="reminder"
+        *ngFor="let reminder of getRemindersForDate(date)"
+        (click)="openReminderForm(reminder, date)"
+      >
+        <div class="reminder-box" [style.background]="reminder.color">
+          {{ reminder.text }} <br />
+          <small *ngIf="reminder.weather">☁ {{ reminder.weather }}</small>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #empty>
+      <div class="empty-cell"></div>
+    </ng-template>
+  </div>
+</div>
